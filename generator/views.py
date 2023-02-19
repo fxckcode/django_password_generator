@@ -2,28 +2,26 @@ from django.shortcuts import render
 from random import choice
 
 # Create your views here.
+def generate_password(length=12, uppercase=True, special=True, numbers=True):
+    characters = 'abcdefghijklmnopqrstvwxyz'
+    if uppercase:
+        characters += 'ABCDEFGHIJKLMNOPQRSTVWXY'
+    if special:
+        characters += '!"#$%&()*+,-./:;<=>?@[\]^_`{|}~'
+    if numbers:
+        characters += '1234567890'
+    return ''.join(choice(characters) for _ in range(length))
+
 def home(request):
-    return render(request, 'generator/home.html')
+    if request.method == 'POST':
+        length = int(request.POST.get('length', 12))
+        uppercase = 'uppercase' in request.POST
+        special = 'special' in request.POST
+        numbers = 'numbers' in request.POST
+        password = generate_password(length, uppercase, special, numbers)
+        return render(request, 'generator/home.html', {'password': password})
+    else:
+        return render(request, 'generator/home.html')
 
 def about(request):
     return render(request, 'generator/about.html')
-
-def password(request):
-
-    characters = list('abcdefghijklmnopqrstvwxyz')
-    generated_password = ''
-
-    length = int(request.GET.get('length'))
-
-    if request.GET.get('uppercase'):
-        characters.extend(list('ABCDEFGHIJKLMNOPQRSTVWXY'))
-    if request.GET.get('special'):
-        characters.extend(list('!"#$%&()*+,-./:;<=>?@[\]^_`{|}~'))
-    if request.GET.get('numbers'):
-        characters.extend(list('1234567890'))
-
-    for x in range(length):
-        generated_password += choice(characters)
-
-
-    return render(request, 'generator/password.html', {'password': generated_password})

@@ -4,7 +4,8 @@
 {% block content %}
 
 <div class="col-md-4 offset-md-4">
-    <form action="{% url 'password' %}" class="card card-body p-5" style="background-color: #121212;">
+    <form method="post" class="card card-body p-5" style="background-color: #121212;">
+        {% csrf_token %}
         <h1 class="h4">Password Generator</h1>
         <label for="length">Select the length of your password:</label>
         <select name="length" id="length" class="form-control">
@@ -37,5 +38,15 @@
         <button class="btn btn-primary">Generate Password</button>
     </form>
 </div>
+
+{% if password %}
+<div class="col-md-4 offset-md-4">
+    <div class="card card-body bg-dark text-center">
+        <h1>Password</h1>
+        <p>{{password}}</p>
+    </div>
+</div>
+{% endif %}
+
 
 {% endblock content %}
