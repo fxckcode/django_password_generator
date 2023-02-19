@@ -8,7 +8,7 @@
         {% csrf_token %}
         <h1 class="h4">Password Generator</h1>
         <label for="length">Select the length of your password:</label>
-        <select name="length" id="length" class="form-control">
+        <select name="length" id="length" class="form-select">
             <option value="6">6  Characters</option>
             <option value="7">7 Chracters</option>
             <option value="8">8 Chracters</option>
@@ -40,10 +40,10 @@
 </div>
 
 {% if password %}
-<div class="col-md-4 offset-md-4">
+<div class="col-md-4 offset-md-4 my-2">
     <div class="card card-body bg-dark text-center">
         <h1>Password</h1>
-        <p>{{password}}</p>
+        <p style="color:orange">{{password}}</p>
     </div>
 </div>
 {% endif %}
