@@ -12,4 +12,4 @@ $ pip install django
 $ python manage.py runserver
 ```
 
-<p align="center">Based on <a href="https://github.com/fazt"> Fazt's </a> video, soon new branch with modifications to the project made in my own way</p>
+<p align="center">Based on <a href="https://github.com/fazt"> Fazt's </a> video, this branch contains my modifications.</p>
