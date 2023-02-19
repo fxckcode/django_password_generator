@@ -19,9 +19,9 @@ def home(request):
         special = 'special' in request.POST
         numbers = 'numbers' in request.POST
         password = generate_password(length, uppercase, special, numbers)
-        return render(request, 'generator/home.html', {'password': password})
+        return render(request, 'home.html', {'password': password})
     else:
-        return render(request, 'generator/home.html')
+        return render(request, 'home.html')
 
 def about(request):
-    return render(request, 'generator/about.html')
+    return render(request, 'about.html')
